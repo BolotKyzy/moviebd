@@ -14,6 +14,19 @@ TextEditingController pswController = TextEditingController();
 
 class _FormWidgetState extends State<FormWidget> {
   String warning = '';
+  _login() {
+    if (userController.text == 'altyn' && pswController.text == "ilim") {
+      setState(() {
+        warning = "You are loged in";
+      });
+      Navigator.of(context).pushReplacementNamed('/main_screen');
+    } else {
+      setState(() {
+        warning =
+            "Your username or password is wrong! Please try again, or register!";
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,19 +49,7 @@ class _FormWidgetState extends State<FormWidget> {
         Row(
           children: [
             ElevatedButton(
-              onPressed: () {
-                if (userController.text == 'altyn' &&
-                    pswController.text == "ilim") {
-                  setState(() {
-                    warning = "You are loged in";
-                  });
-                } else {
-                  setState(() {
-                    warning =
-                        "Your username or password is wrong! Please try again, or register!";
-                  });
-                }
-              },
+              onPressed: _login,
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStatePropertyAll<Color>(Color(0xff01B4E4))),
