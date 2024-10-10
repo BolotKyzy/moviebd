@@ -9,8 +9,8 @@ class FormWidget extends StatefulWidget {
   State<FormWidget> createState() => _FormWidgetState();
 }
 
-TextEditingController userController = TextEditingController();
-TextEditingController pswController = TextEditingController();
+TextEditingController userController = TextEditingController(text: 'altyn');
+TextEditingController pswController = TextEditingController(text: 'ilim');
 
 class _FormWidgetState extends State<FormWidget> {
   String warning = '';

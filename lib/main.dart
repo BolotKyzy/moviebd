@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:themoviedb/constants/app_colors.dart';
 import 'package:themoviedb/widgets/auth/auth_widget.dart';
 import 'package:themoviedb/widgets/main_screen/main_screen.dart';
 
@@ -15,8 +16,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          appBarTheme:
-              AppBarTheme(backgroundColor: const Color.fromRGBO(3, 37, 65, 1))),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.grey,
+              backgroundColor: AppColors.mainDarkBlue),
+          appBarTheme: AppBarTheme(
+            backgroundColor: AppColors.mainDarkBlue,
+          )),
       initialRoute: '/',
       routes: {
         '/': (context) => MyHomePage(),
@@ -48,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xff032141),
           title: Center(
             child: Text(
               "Login to your account",
