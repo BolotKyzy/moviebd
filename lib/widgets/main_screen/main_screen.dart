@@ -10,11 +10,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
-  static const List<Widget> _selectedTab = <Widget>[
-    Text("Новости"),
-    MovieListWidgte(),
-    Text("Сериалы"),
-  ];
   void onSelectedtab(index) {
     if (index == _currentIndex) return;
     setState(() {
@@ -33,7 +28,14 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-      body: Center(child: _selectedTab[_currentIndex]),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          Text("Новости"),
+          MovieListWidgte(),
+          Text("Сериалы"),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: onSelectedtab,
