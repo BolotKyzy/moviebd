@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:themoviedb/widgets/movie_list/movie_list_widget.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -11,7 +12,7 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
   static const List<Widget> _selectedTab = <Widget>[
     Text("Новости"),
-    Text("Фильмы"),
+    MovieListWidgte(),
     Text("Сериалы"),
   ];
   void onSelectedtab(index) {
