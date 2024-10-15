@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:themoviedb/resources/resources.dart';
-
-class Movie {
-  final String imgName;
-  final String title;
-  final String time;
-  final String description;
-
-  Movie(
-      {required this.imgName,
-      required this.title,
-      required this.time,
-      required this.description});
-}
+import 'package:themoviedb/constants/movie_list.dart';
 
 class MovieListWidgte extends StatefulWidget {
   MovieListWidgte({super.key});
@@ -22,62 +9,17 @@ class MovieListWidgte extends StatefulWidget {
 }
 
 class _MovieListWidgteState extends State<MovieListWidgte> {
-  List<Movie> _movies = [
-    Movie(
-        imgName: AppImages.movieImg,
-        title: "Film",
-        time: "July 24, 2024",
-        description:
-            "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit-up again with an even more reluctant Wolverine"),
-    Movie(
-        imgName: AppImages.movieImg,
-        title: "Смертельная битва",
-        time: "July 24, 2024",
-        description:
-            "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit-up again with an even more reluctant Wolverine"),
-    Movie(
-        imgName: AppImages.movieImg,
-        title: "Прибытие",
-        time: "July 24, 2024",
-        description:
-            "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit-up again with an even more reluctant Wolverine"),
-    Movie(
-        imgName: AppImages.movieImg,
-        title: "Назад в будущее 1",
-        time: "July 24, 2024",
-        description:
-            "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit-up again with an even more reluctant Wolverine"),
-    Movie(
-        imgName: AppImages.movieImg,
-        title: "Назад в будущее 2",
-        time: "July 24, 2024",
-        description:
-            "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit-up again with an even more reluctant Wolverine"),
-    Movie(
-        imgName: AppImages.movieImg,
-        title: "Назад в будущее 3",
-        time: "July 24, 2024",
-        description:
-            "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit-up again with an even more reluctant Wolverine"),
-    Movie(
-        imgName: AppImages.movieImg,
-        title: "Назад в будущее 4",
-        time: "July 24, 2024",
-        description:
-            "A listless Wade Wilson toils away in civilian life with his days as the morally flexible mercenary, Deadpool, behind him. But when his homeworld faces an existential threat, Wade must reluctantly suit-up again with an even more reluctant Wolverine"),
-  ];
-
   var filteredMovies = <Movie>[];
   final ctr = TextEditingController();
 
   void _searchMovies() {
     String query = ctr.text;
     if (query.isNotEmpty) {
-      filteredMovies = _movies.where((Movie movie) {
+      filteredMovies = movies.where((Movie movie) {
         return movie.title.toLowerCase().contains(query.toLowerCase());
       }).toList();
     } else {
-      filteredMovies = _movies;
+      filteredMovies = movies;
     }
     setState(() {});
   }
@@ -85,8 +27,13 @@ class _MovieListWidgteState extends State<MovieListWidgte> {
   @override
   void initState() {
     super.initState();
-    filteredMovies = _movies;
+    filteredMovies = movies;
     ctr.addListener(_searchMovies);
+  }
+
+  void _onMovieTap(int id) {
+    Navigator.of(context)
+        .pushNamed('/movie_screen/movie_details', arguments: id);
   }
 
   @override
@@ -164,9 +111,7 @@ class _MovieListWidgteState extends State<MovieListWidgte> {
                       color: Colors.transparent,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {
-                          print("22");
-                        },
+                        onTap: () => _onMovieTap(movie.id),
                       ),
                     )
                   ],
