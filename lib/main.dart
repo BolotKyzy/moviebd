@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               selectedItemColor: Colors.white,
               unselectedItemColor: Colors.grey,
               backgroundColor: AppColors.mainDarkBlue),
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             backgroundColor: AppColors.mainDarkBlue,
           )),
       initialRoute: '/',
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (context) {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: Text("Произошла ошибка навигации!"),
             ),
